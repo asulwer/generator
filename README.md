@@ -1,1 +1,1 @@
-# generator
+Wirelessly control your generator via a web page interface
