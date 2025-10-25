@@ -1,9 +1,0 @@
-pyproject.toml
-flaskr/__about__.py
-flaskr/__init__.py
-generatorpi.egg-info/PKG-INFO
-generatorpi.egg-info/SOURCES.txt
-generatorpi.egg-info/dependency_links.txt
-generatorpi.egg-info/requires.txt
-generatorpi.egg-info/top_level.txt
-tests/test_factory.py

@@ -1,7 +1,0 @@
-flask
-flask-socketio
-smbus2
-
-[test]
-pytest
-coverage
