@@ -1,7 +1,7 @@
 [project]
 name = "generatorpi"
 version = "2.0.0"
-description = 'remotely control generator'
+description = 'wirelessly control generator via webbrowser'
 authors = [
   { name = "Aaron Sulwer", email = "asulwer@gmail.com" },
 ]

@@ -1,7 +1,3 @@
-#venv per-project https://www.raspberrypi.com/documentation/computers/os.html#use-pip-with-virtual-environments
-#https://flask.palletsprojects.com/en/stable/#
-#https://gpiozero.readthedocs.io/en/latest/index.html
-
 import flask
 import flask_socketio
 import smbus2
