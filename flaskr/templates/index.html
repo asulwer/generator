@@ -1,0 +1,118 @@
+{% extends "layout.html" %}
+{% block body %}
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div id="header" class="lead"></div>
+      </div>      
+    </div>    
+    <div class="row">
+      <div class="col form-check form-switch fs-3">
+        <label class="form-check-label" for="switchPump">Pump</label>
+        <input class="form-check-input" type="checkbox" role="switch" id="switchPump" onclick="pumpUpdate()">        
+      </div>    
+    </div>
+    <div class="row">
+      <div class="col form-check form-switch fs-3">
+        <label class="form-check-label" for="switchStarter">Starter</label>
+        <input class="form-check-input" type="checkbox" role="switch" id="switchStarter" onclick="starterUpdate()">        
+      </div>    
+    </div>
+    <div class="row">
+      <div class="col form-check form-switch fs-3">
+        <label class="form-check-label" for="switchACOnInterupt">AC On Interupt</label>
+        <input class="form-check-input" type="checkbox" role="switch" id="switchACOnInterupt" onclick="aconinteruptUpdate()">        
+      </div>    
+    </div>
+    <div class="row">
+      <div class="col form-check form-switch fs-3">
+        <label class="form-check-label" for="switchACOffInterupt">AC Off Interupt</label>
+        <input class="form-check-input" type="checkbox" role="switch" id="switchACOffInterupt" onclick="acoffinteruptUpdate()">        
+      </div>    
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("#switchPump").prop('checked', JSON.parse("{{switchPump}}".toLowerCase()));
+      $("#switchStarter").prop('checked', JSON.parse("{{switchStarter}}".toLowerCase()));
+      $("#switchACOnInterupt").prop('checked', JSON.parse("{{switchACOnInterupt}}".toLowerCase()));
+      $("#switchACOffInterupt").prop('checked', JSON.parse("{{switchACOffInterupt}}".toLowerCase()));
+    })
+
+    const socket = io();
+
+    socket.on("connect", () => {
+      console.log("connected");
+      document.getElementById("header").innerHTML = "Generator Connected";
+    });
+    
+    socket.on("disconnect", () => {
+      console.log("disconnected");
+      document.getElementById("header").innerHTML = "Generator Disconnected";
+    });
+    
+    function pumpUpdate() {
+      if($("#switchPump").is(':checked')) {
+        console.log("pump switch checked");
+        socket.emit('pumpUpdate', { switchPump: true});
+      }
+      else {
+        console.log("pump switch unchecked");
+        socket.emit('pumpUpdate', { switchPump: false});
+      }
+    }
+    socket.on("pumpUpdate", function(msg) {
+      console.log(msg);
+      $("#switchPump").prop('checked', msg.switchPump);      
+    });
+
+    function starterUpdate() {
+      if($("#switchStarter").is(':checked')) {
+        console.log("starter switch checked");
+        socket.emit('starterUpdate', { switchStarter: true});
+      }
+      else {
+        console.log("pump switch unchecked");
+        socket.emit('starterUpdate', { switchStarter: false});
+      }
+    }
+    socket.on("starterUpdate", function(msg) {
+      console.log(msg);
+      $("#switchStarter").prop('checked', msg.switchStarter);      
+    });
+
+    function aconinteruptUpdate() {
+      if($("#switchACOnInterupt").is(':checked')) {
+        console.log("aconinterupt switch checked");
+        socket.emit('aconinteruptUpdate', { switchACOnInterupt: true});
+      }
+      else {
+        console.log("aconinterupt switch unchecked");
+        socket.emit('aconinteruptUpdate', { switchACOnInterupt: false});
+      }
+    }
+    socket.on("aconinteruptUpdate", function(msg) {
+      console.log(msg);
+      $("#switchACOnInterupt").prop('checked', msg.switchACOnInterupt);      
+    });
+
+    function acoffinteruptUpdate() {
+      if($("#switchACOffInterupt").is(':checked')) {
+        console.log("acoffinterupt switch checked");
+        socket.emit('acoffinteruptUpdate', { switchACOffInterupt: true});
+      }
+      else {
+        console.log("acoffinterupt switch unchecked");
+        socket.emit('acoffinteruptUpdate', { switchACOffInterupt: false});
+      }
+    }
+    socket.on("acoffinteruptUpdate", function(msg) {
+      console.log(msg);
+      $("#switchACOffInterupt").prop('checked', msg.switchACOffInterupt);      
+    });
+  
+  </script>
+
+{% endblock %}

@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: generatorpi
+Version: 0.0.0
+Summary: remotely control generator
+Author-email: Aaron Sulwer <asulwer@gmail.com>
+Requires-Dist: flask
+Requires-Dist: flask-socketio
+Requires-Dist: smbus2
+Provides-Extra: test
+Requires-Dist: pytest; extra == "test"
+Requires-Dist: coverage; extra == "test"

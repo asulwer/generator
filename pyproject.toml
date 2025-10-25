@@ -1,0 +1,27 @@
+[project]
+name = "generatorpi"
+version = "2.0.0"
+description = 'remotely control generator'
+authors = [
+  { name = "Aaron Sulwer", email = "asulwer@gmail.com" },
+]
+dependencies = [
+    "flask",
+    "flask-socketio",
+    "smbus2"
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "coverage"
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = false
+source = [
+  "flaskr"
+]
