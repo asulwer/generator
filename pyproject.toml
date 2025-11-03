@@ -1,14 +1,20 @@
+[build-system]
+requires = ["setuptools", "swig"]
+
 [project]
 name = "generatorpi"
-version = "2.0.0"
+version = "2.0.1"
 description = 'wirelessly control generator via webbrowser'
 authors = [
   { name = "Aaron Sulwer", email = "asulwer@gmail.com" },
 ]
+readme = "README.md"
 dependencies = [
     "flask",
     "flask-socketio",
-    "smbus2"
+    "gevent",
+    "smbus2",
+    "gpiozero"
 ]
 
 [project.optional-dependencies]

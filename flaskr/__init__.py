@@ -1,17 +1,7 @@
 import flask
 import flask_socketio
-import smbus2
+import relays
 
-DEVICE_ADDR = 0x01
-CHIP_ADDR = 0x10
-PUMP_ADDR = 0x01
-STARTER_ADDR = 0x02
-ACINTERUPT_ON_ADDR = 0x03
-ACINTERUPT_OFF_ADDR = 0x04
-ON = 0xFF
-OFF = 0x00
-
-bus = smbus2.SMBus(DEVICE_ADDR)
 socketio = flask_socketio.SocketIO()
 
 templateData = {
@@ -34,11 +24,6 @@ def create_app(test_config=None):
 
     socketio.init_app(app, async_mode='gevent')
 
-    bus.write_byte_data(CHIP_ADDR, PUMP_ADDR, OFF)
-    bus.write_byte_data(CHIP_ADDR, STARTER_ADDR, OFF)
-    bus.write_byte_data(CHIP_ADDR, ACINTERUPT_ON_ADDR, OFF)
-    bus.write_byte_data(CHIP_ADDR, ACINTERUPT_OFF_ADDR, OFF)
-
     @app.route('/')
     def index():
         return flask.render_template('index.html', **templateData)
@@ -49,10 +34,10 @@ def create_app(test_config=None):
 
         if state:
             templateData['switchPump'] = True
-            bus.write_byte_data(CHIP_ADDR, PUMP_ADDR, ON)
+            relays.pump_on()
         else:
             templateData['switchPump'] = False
-            bus.write_byte_data(CHIP_ADDR, PUMP_ADDR, OFF)
+            relays.pump_off()
 
         flask_socketio.emit('pumpUpdate', templateData)
 
@@ -62,10 +47,10 @@ def create_app(test_config=None):
 
         if state:
             templateData['switchStarter'] = True
-            bus.write_byte_data(CHIP_ADDR, STARTER_ADDR, ON)
+            relays.starter_on()
         else:
             templateData['switchStarter'] = False
-            bus.write_byte_data(CHIP_ADDR, STARTER_ADDR, OFF)
+            relays.starter_off()
 
         flask_socketio.emit('starterUpdate', templateData)
 
@@ -75,10 +60,10 @@ def create_app(test_config=None):
 
         if state:
             templateData['switchACOnInterupt'] = True
-            bus.write_byte_data(CHIP_ADDR, ACINTERUPT_ON_ADDR, ON)
+            relays.ac_on_interupt_enable()
         else:
             templateData['switchACOnInterupt'] = False
-            bus.write_byte_data(CHIP_ADDR, ACINTERUPT_ON_ADDR, OFF)
+            relays.ac_on_interupt_disable()
 
         flask_socketio.emit('aconinteruptUpdate', templateData)
 
@@ -88,10 +73,10 @@ def create_app(test_config=None):
 
         if state:
             templateData['switchACOffInterupt'] = True
-            bus.write_byte_data(CHIP_ADDR, ACINTERUPT_OFF_ADDR, ON)
+            relays.ac_off_interupt_enable()
         else:
             templateData['switchACOffInterupt'] = False
-            bus.write_byte_data(CHIP_ADDR, ACINTERUPT_OFF_ADDR, OFF)
+            relays.ac_off_interupt_disable()
 
         flask_socketio.emit('acoffinteruptUpdate', templateData)
     

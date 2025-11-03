@@ -1,7 +1,7 @@
 # Wirelessly control your generator via a web page interface
 
-* [Virtual Environment per-project](https://www.raspberrypi.com/documentation/computers/os.html#use-pip-with-virtual-environments)
+[Auto-hotspot](https://github.com/0unknwn/auto-hotspot)
+
 * [Flask](https://flask.palletsprojects.com/en/stable/#)
 * [SMBus2](https://github.com/kplindegaard/smbus2)
-
-[Auto-hotspot](https://github.com/0unknwn/auto-hotspot)
+* [GPIOZero](https://gpiozero.readthedocs.io/en/stable/index.html)
