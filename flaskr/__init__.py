@@ -7,7 +7,8 @@ socketio = flask_socketio.SocketIO()
 templateData = {
     'switchPump': False,
     'switchStarter': False,
-    'switchACInterupt': False
+    'switchACOnInterupt': False,
+    'switchACOffInterupt': False
 }
 
 def create_app(test_config=None):
@@ -34,10 +35,10 @@ def create_app(test_config=None):
 
         if state:
             templateData['switchPump'] = True
-            relays.pump_on()
+            relays.pump(relays.State.ON)
         else:
             templateData['switchPump'] = False
-            relays.pump_off()
+            relays.pump(relays.State.OFF)
 
         flask_socketio.emit('pumpUpdate', templateData)
 
@@ -47,10 +48,10 @@ def create_app(test_config=None):
 
         if state:
             templateData['switchStarter'] = True
-            relays.starter_on()
+            relays.starter(relays.State.ON)
         else:
             templateData['switchStarter'] = False
-            relays.starter_off()
+            relays.starter(relays.State.OFF)
 
         flask_socketio.emit('starterUpdate', templateData)
 
@@ -60,10 +61,10 @@ def create_app(test_config=None):
 
         if state:
             templateData['switchACOnInterupt'] = True
-            relays.ac_on_interupt_enable()
+            relays.ac_on_interupt(relays.State.ON)
         else:
             templateData['switchACOnInterupt'] = False
-            relays.ac_on_interupt_disable()
+            relays.ac_on_interupt(relays.State.OFF)
 
         flask_socketio.emit('aconinteruptUpdate', templateData)
 
@@ -73,10 +74,10 @@ def create_app(test_config=None):
 
         if state:
             templateData['switchACOffInterupt'] = True
-            relays.ac_off_interupt_enable()
+            relays.ac_off_interupt(relays.State.ON)
         else:
             templateData['switchACOffInterupt'] = False
-            relays.ac_off_interupt_disable()
+            relays.ac_off_interupt(relays.State.OFF)
 
         flask_socketio.emit('acoffinteruptUpdate', templateData)
     
