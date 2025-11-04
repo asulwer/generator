@@ -1,29 +1,5 @@
-2025-11-04 13:32:57,260 - root - INFO ReqId 548208895840 - starting 2wire)
-2025-11-04 13:32:57,261 - root - INFO ReqId 548208895840 - use pin factory LGPIO
-2025-11-04 13:32:57,273 - root - INFO ReqId 548208895840 - Waiting for button presses...
-2025-11-04 13:33:08,353 - root - INFO ReqId 548208895840 - Button pressed asynchronously!
-2025-11-04 13:33:08,516 - root - INFO ReqId 548208895840 - Button released asynchronously!
-2025-11-04 13:33:08,702 - root - INFO ReqId 548208895840 - Button pressed asynchronously!
-2025-11-04 13:33:08,844 - root - INFO ReqId 548208895840 - Button released asynchronously!
-2025-11-04 13:33:09,068 - root - INFO ReqId 548208895840 - Button pressed asynchronously!
-2025-11-04 13:33:09,177 - root - INFO ReqId 548208895840 - Button released asynchronously!
-2025-11-04 13:33:09,178 - root - INFO ReqId 548208895840 - Button pressed asynchronously!
-2025-11-04 13:33:09,180 - root - INFO ReqId 548208895840 - Button released asynchronously!
-2025-11-04 13:33:09,181 - root - INFO ReqId 548208895840 - Button pressed asynchronously!
-2025-11-04 13:33:09,182 - root - INFO ReqId 548208895840 - Button released asynchronously!
-2025-11-04 13:33:09,410 - root - INFO ReqId 548208895840 - Button pressed asynchronously!
-2025-11-04 13:33:09,424 - root - INFO ReqId 548208895840 - Button released asynchronously!
-2025-11-04 13:33:10,439 - root - INFO ReqId 548208895840 - Button pressed asynchronously!
-2025-11-04 13:33:10,468 - root - INFO ReqId 548208895840 - Button released asynchronously!
-2025-11-04 13:33:11,708 - root - INFO ReqId 548208895840 - Button pressed asynchronously!
-2025-11-04 13:33:11,843 - root - INFO ReqId 548208895840 - Button released asynchronously!
-2025-11-04 13:33:13,561 - root - INFO ReqId 548208895840 - Button pressed asynchronously!
-2025-11-04 13:33:13,621 - root - INFO ReqId 548208895840 - Button released asynchronously!
-2025-11-04 13:33:13,991 - root - INFO ReqId 548208895840 - Button pressed asynchronously!
-2025-11-04 13:33:15,809 - root - INFO ReqId 548208895840 - Button released asynchronously!
-2025-11-04 13:33:16,365 - root - INFO ReqId 548208895840 - Button pressed asynchronously!
-2025-11-04 13:33:16,815 - root - INFO ReqId 548208895840 - Button released asynchronously!
-2025-11-04 13:33:17,206 - root - INFO ReqId 548208895840 - Button pressed asynchronously!
-2025-11-04 13:33:17,665 - root - INFO ReqId 548208895840 - Button released asynchronously!
-2025-11-04 13:33:18,032 - root - INFO ReqId 548208895840 - Button pressed asynchronously!
-2025-11-04 13:33:18,374 - root - INFO ReqId 548208895840 - Button released asynchronously!
+2025-11-04 13:34:45,841 - root - INFO ReqId 548246390624 - starting 2wire
+2025-11-04 13:34:45,842 - root - INFO ReqId 548246390624 - use pin factory LGPIO
+2025-11-04 13:34:45,853 - root - INFO ReqId 548246390624 - Waiting for button presses...
+2025-11-04 13:34:49,243 - root - INFO ReqId 548246390624 - Button pressed asynchronously!
+2025-11-04 13:34:49,979 - root - INFO ReqId 548246390624 - Button released asynchronously!
