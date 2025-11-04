@@ -1,5 +1,0 @@
-2025-11-04 13:34:45,841 - root - INFO ReqId 548246390624 - starting 2wire
-2025-11-04 13:34:45,842 - root - INFO ReqId 548246390624 - use pin factory LGPIO
-2025-11-04 13:34:45,853 - root - INFO ReqId 548246390624 - Waiting for button presses...
-2025-11-04 13:34:49,243 - root - INFO ReqId 548246390624 - Button pressed asynchronously!
-2025-11-04 13:34:49,979 - root - INFO ReqId 548246390624 - Button released asynchronously!
