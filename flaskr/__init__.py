@@ -2,7 +2,9 @@ import flask
 import flask_socketio
 import relays
 
-socketio = flask_socketio.SocketIO()
+import asyncio
+from gpiozero.pins.lgpio import LGPIOFactory
+from gpiozero import Device, Button
 
 templateData = {
     'switchPump': False,
@@ -11,6 +13,7 @@ templateData = {
     'switchACOffInterupt': False
 }
 
+socketio = flask_socketio.SocketIO()
 def create_app(test_config=None):
     app = flask.Flask(__name__, instance_relative_config=True)   
 
@@ -24,6 +27,7 @@ def create_app(test_config=None):
         app.config.from_mapping(test_config)
 
     socketio.init_app(app, async_mode='gevent')
+    relays.initialize()
 
     @app.route('/')
     def index():

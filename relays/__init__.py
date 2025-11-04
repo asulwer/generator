@@ -22,21 +22,25 @@ STARTER_ADDR = 0x02
 ACINTERUPT_ON_ADDR = 0x03
 ACINTERUPT_OFF_ADDR = 0x04
 
-bus = smbus2.SMBus(DEVICE_ADDR)
-
-bus.write_byte_data(CHIP_ADDR, PUMP_ADDR, State.OFF.value)
-bus.write_byte_data(CHIP_ADDR, STARTER_ADDR, State.OFF.value)
-bus.write_byte_data(CHIP_ADDR, ACINTERUPT_ON_ADDR, State.OFF.value)
-bus.write_byte_data(CHIP_ADDR, ACINTERUPT_OFF_ADDR, State.OFF.value)
+def initialize():
+    with smbus2.SMBus(DEVICE_ADDR) as bus:
+        bus.write_byte_data(CHIP_ADDR, PUMP_ADDR, State.OFF.value)
+        bus.write_byte_data(CHIP_ADDR, STARTER_ADDR, State.OFF.value)
+        bus.write_byte_data(CHIP_ADDR, ACINTERUPT_ON_ADDR, State.OFF.value)
+        bus.write_byte_data(CHIP_ADDR, ACINTERUPT_OFF_ADDR, State.OFF.value)
 
 def pump(state: State):
-    bus.write_byte_data(CHIP_ADDR, PUMP_ADDR, state.value)
+    with smbus2.SMBus(DEVICE_ADDR) as bus:
+        bus.write_byte_data(CHIP_ADDR, PUMP_ADDR, state.value)
 
 def starter(state: State):
-    bus.write_byte_data(CHIP_ADDR, STARTER_ADDR, state.value)
+    with smbus2.SMBus(DEVICE_ADDR) as bus:
+        bus.write_byte_data(CHIP_ADDR, STARTER_ADDR, state.value)
 
 def ac_on_interupt(state: State):
-    bus.write_byte_data(CHIP_ADDR, ACINTERUPT_ON_ADDR, state.value)
+    with smbus2.SMBus(DEVICE_ADDR) as bus:
+        bus.write_byte_data(CHIP_ADDR, ACINTERUPT_ON_ADDR, state.value)
 
 def ac_off_interupt(state: State):
-    bus.write_byte_data(CHIP_ADDR, ACINTERUPT_OFF_ADDR, state.value)
+    with smbus2.SMBus(DEVICE_ADDR) as bus:
+        bus.write_byte_data(CHIP_ADDR, ACINTERUPT_OFF_ADDR, state.value)
