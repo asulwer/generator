@@ -1,6 +1,3 @@
-[build-system]
-requires = ["setuptools", "swig"]
-
 [project]
 name = "generatorpi"
 version = "2.0.1"
@@ -29,5 +26,6 @@ testpaths = ["tests"]
 [tool.coverage.run]
 branch = false
 source = [
-  "flaskr"
+  "flaskr",
+  "relays"
 ]
