@@ -3,12 +3,21 @@ import logger_setup
 import asyncio
 from gpiozero.pins.lgpio import LGPIOFactory
 from gpiozero import Device, Button
+import datetime
+
+def convert(date_time):
+    format = '%H:%M' #24 hour
+    datetime_str = datetime.datetime.strptime(date_time, format)
+
+    return datetime_str
 
 async def button_pressed_handler():
-    logging.info("Button pressed asynchronously!")
+    if convert("09:00") < datetime.datetime.now() and convert("23:00") > datetime.datetime.now():
+        logging.info("Button pressed asynchronously!")
 
 async def button_released_handler():
-    logging.info("Button released asynchronously!")
+    if convert("09:00") < datetime.datetime.now() and convert("23:00") > datetime.datetime.now():
+        logging.info("Button released asynchronously!")
 
 async def main():
     button = Button(pin=26,bounce_time=1)
