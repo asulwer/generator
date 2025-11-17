@@ -1,8 +1,8 @@
 .venv/
-flaskr/__pycache__/
-relays/__pycache__/
-logger_setup/__pycache__/
-generatorpi.egg-info/
+src/flaskr/__pycache__/
+src/relays/__pycache__/
+src/logger_setup/__pycache__/
+src/generatorpi.egg-info/
 .lgd-nfy0
 webserver.txt
 2wire.txt
