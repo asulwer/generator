@@ -1,6 +1,8 @@
 .venv/
 flaskr/__pycache__/
 relays/__pycache__/
+logger_setup/__pycache__/
 generatorpi.egg-info/
 .lgd-nfy0
-log.txt
+webserver.txt
+2wire.txt
