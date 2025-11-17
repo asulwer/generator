@@ -1,0 +1,5 @@
+2025-11-16 17:23:34,543 - root - INFO ReqId 548146788192 - Logging configured successfully.
+2025-11-16 17:23:34,544 - root - INFO ReqId 548146788192 - starting 2wire
+2025-11-16 17:23:34,544 - root - INFO ReqId 548146788192 - use pin factory LGPIO
+2025-11-16 17:23:34,547 - asyncio - DEBUG ReqId 548146788192 - Using selector: EpollSelector
+2025-11-16 17:23:34,558 - root - INFO ReqId 548146788192 - Waiting for button presses...

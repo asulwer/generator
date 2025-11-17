@@ -1,0 +1,5 @@
+2025-11-16 17:26:38,189 - root - INFO ReqId 548027873120 - Logging configured successfully.
+2025-11-16 17:26:38,191 - root - INFO ReqId 548027873120 - starting webserver
+2025-11-16 17:26:38,545 - werkzeug - WARNING ReqId 548027873120 -  * Debugger is active!
+2025-11-16 17:26:38,547 - werkzeug - INFO ReqId 548027873120 -  * Debugger PIN: 446-255-027
+2025-11-16 17:28:24,104 - werkzeug - INFO ReqId 547976481664 -  * Detected chang2025-11-16 17:28:25,893 - werkzeug - INFO ReqId 547706867456 -  * Restarting with stat
