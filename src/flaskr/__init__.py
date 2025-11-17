@@ -1,3 +1,4 @@
+import logging
 import flask
 import flask_socketio
 import relays
@@ -15,6 +16,7 @@ templateData = {
 
 socketio = flask_socketio.SocketIO()
 def create_app(test_config=None):
+    logging.info("create flaskr app")
     app = flask.Flask(__name__, instance_relative_config=True)   
 
     app.config.from_mapping(
@@ -26,15 +28,19 @@ def create_app(test_config=None):
     else:
         app.config.from_mapping(test_config)
 
+    logging.info("init flaskr app")
     socketio.init_app(app, async_mode='gevent')
+    logging.info("initialize relays")
     relays.initialize()
 
     @app.route('/')
     def index():
+        logging.info("index called")
         return flask.render_template('index.html', **templateData)
 
     @socketio.event
     def pumpUpdate(data):
+        logging.info("pumpUpdate called")
         state = bool(data['switchPump'])
 
         if state:
@@ -48,6 +54,7 @@ def create_app(test_config=None):
 
     @socketio.event
     def starterUpdate(data):
+        logging.info("starterUpdate called")
         state = bool(data['switchStarter'])
 
         if state:
@@ -61,6 +68,7 @@ def create_app(test_config=None):
 
     @socketio.event
     def aconinteruptUpdate(data):
+        logging.info("aconinteruptUpdate called")
         state = bool(data['switchACOnInterupt'])
 
         if state:
@@ -74,6 +82,7 @@ def create_app(test_config=None):
 
     @socketio.event
     def acoffinteruptUpdate(data):
+        logging.info("acoffinteruptUpdate called")
         state = bool(data['switchACOffInterupt'])
 
         if state:

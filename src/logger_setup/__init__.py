@@ -3,7 +3,7 @@ import logging.config
 import os
 import sys
 
-def setup(config_path):
+def configure(config_path):
     if not os.path.isfile(config_path):
         print(f"Error: Logging configuration file not found: {config_path}")
         sys.exit(1)

@@ -27,5 +27,6 @@ testpaths = ["tests"]
 branch = false
 source = [
   "flaskr",
-  "relays"
+  "relays",
+  "logger_setup"
 ]

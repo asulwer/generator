@@ -1,3 +1,4 @@
+import logging
 from enum import IntEnum, unique
 import smbus2
 
@@ -23,6 +24,7 @@ ACINTERUPT_ON_ADDR = 0x03
 ACINTERUPT_OFF_ADDR = 0x04
 
 def initialize():
+    logging.info("relays: initialize")
     with smbus2.SMBus(DEVICE_ADDR) as bus:
         bus.write_byte_data(CHIP_ADDR, PUMP_ADDR, State.OFF.value)
         bus.write_byte_data(CHIP_ADDR, STARTER_ADDR, State.OFF.value)
@@ -30,17 +32,21 @@ def initialize():
         bus.write_byte_data(CHIP_ADDR, ACINTERUPT_OFF_ADDR, State.OFF.value)
 
 def pump(state: State):
+    logging.info("relays: pump %s", state)
     with smbus2.SMBus(DEVICE_ADDR) as bus:
         bus.write_byte_data(CHIP_ADDR, PUMP_ADDR, state.value)
 
 def starter(state: State):
+    logging.info("relays: starter %s", state)
     with smbus2.SMBus(DEVICE_ADDR) as bus:
         bus.write_byte_data(CHIP_ADDR, STARTER_ADDR, state.value)
 
 def ac_on_interupt(state: State):
+    logging.info("relays: ac_on %s", state)
     with smbus2.SMBus(DEVICE_ADDR) as bus:
         bus.write_byte_data(CHIP_ADDR, ACINTERUPT_ON_ADDR, state.value)
 
 def ac_off_interupt(state: State):
+    logging.info("relays: ac_off %s", state)
     with smbus2.SMBus(DEVICE_ADDR) as bus:
         bus.write_byte_data(CHIP_ADDR, ACINTERUPT_OFF_ADDR, state.value)

@@ -1,9 +1,9 @@
-import flaskr
 import logging
 import logger_setup
+import flaskr
 
 if __name__ == '__main__':
-    logger_setup.setup("/home/asulwer/generator/src/webserver.conf")
+    logger_setup.configure("/home/asulwer/generator/src/webserver.conf")
     logging.info("starting webserver")
 
     app = flaskr.create_app()
