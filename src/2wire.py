@@ -12,12 +12,12 @@ def convert(date_time):
     return datetime_str
 
 async def button_pressed_handler():
-    if convert("09:00") < datetime.datetime.now() and convert("23:00") > datetime.datetime.now():
-        logging.info("Button pressed asynchronously!")
+    #if convert("09:00") < datetime.datetime.now() and convert("23:00") > datetime.datetime.now():
+    logging.info("Button pressed asynchronously!")
 
 async def button_released_handler():
-    if convert("09:00") < datetime.datetime.now() and convert("23:00") > datetime.datetime.now():
-        logging.info("Button released asynchronously!")
+    #if convert("09:00") < datetime.datetime.now() and convert("23:00") > datetime.datetime.now():
+    logging.info("Button released asynchronously!")
 
 async def main():
     button = Button(pin=26,bounce_time=1)
