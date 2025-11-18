@@ -20,7 +20,7 @@ async def button_released_handler():
     logging.info("Button released asynchronously!")
 
 async def main():
-    button = Button(pin=26,bounce_time=1)
+    button = Button(pin=26,bounce_time=0.2)
     loop = asyncio.get_running_loop()
     button.when_pressed = lambda: loop.call_soon_threadsafe(asyncio.create_task, button_pressed_handler())
     button.when_released = lambda: loop.call_soon_threadsafe(asyncio.create_task, button_released_handler())
