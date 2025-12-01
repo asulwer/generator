@@ -9,6 +9,7 @@ readme = "README.md"
 dependencies = [
     "flask",
     "flask-socketio",
+    "python-socketio[asyncio_client]",
     "gevent",
     "smbus2",
     "gpiozero"
