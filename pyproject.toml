@@ -10,6 +10,7 @@ dependencies = [
     "flask",
     "flask-socketio",
     "python-socketio[asyncio_client]",
+    "websocket-client",
     "gevent",
     "smbus2",
     "gpiozero"
