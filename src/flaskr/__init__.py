@@ -17,7 +17,7 @@ def create_app(test_config=None):
     app = flask.Flask(__name__)
     
     if test_config is None:
-        app.config.from_object('flask_config.DevConfig')
+        app.config.from_object('flask_config.ProdConfig')
     else:
         app.config.from_mapping(test_config)
 

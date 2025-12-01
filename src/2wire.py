@@ -16,6 +16,7 @@ def convert(date_time):
 async def button_pressed_handler():
     #if convert("09:00") < datetime.datetime.now() and convert("23:00") > datetime.datetime.now():
     logging.info("Generator starting")
+    await asyncio.sleep(2)
 
     with socketio.SimpleClient() as sio:
         logging.info("connecting to Webserver")
@@ -39,22 +40,23 @@ async def button_pressed_handler():
 
         logging.info("release ac toggle")
         await sio.emit('aconinteruptUpdate', { 'aconinteruptUpdate': False })
-        await asyncio.sleep(0.5)
     
+    await asyncio.sleep(0.5)
     logging.info("Generator started")
 
 async def button_released_handler():
     #if convert("09:00") < datetime.datetime.now() and convert("23:00") > datetime.datetime.now():
     logging.info("Generator stopping")
-    
+    await asyncio.sleep(2)
+
     with socketio.SimpleClient() as sio:
         logging.info("connecting to Webserver")
         await sio.connect('http://localhost:5000')
         
         logging.info("turn pump off")
         await sio.emit('pumpUpdate', { 'switchPump': False })
-        await asyncio.sleep(2)
-
+        
+    await asyncio.sleep(2)
     logging.info("Generator stopped")
 
 async def main():
