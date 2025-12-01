@@ -1,5 +1,6 @@
 .venv/
 logs/
+src/__pycache__/
 src/flaskr/__pycache__/
 src/relays/__pycache__/
 src/logger_setup/__pycache__/
