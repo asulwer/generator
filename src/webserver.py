@@ -7,5 +7,4 @@ if __name__ == '__main__':
     logging.info("starting webserver")
 
     app = flaskr.create_app()
-    #flaskr.socketio.run(app, host='0.0.0.0', port=5000, debug=True) #restarts if code changes
-    flaskr.socketio.run(app, host='0.0.0.0', port=5000) #does not restart if code changes
+    flaskr.socketio.run(app, host='0.0.0.0', port=5000)

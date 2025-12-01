@@ -14,19 +14,16 @@ socketio = flask_socketio.SocketIO()
 
 def create_app(test_config=None):
     logging.info("create flaskr app")
-    app = flask.Flask(__name__, instance_relative_config=True)   
-
-    app.config.from_mapping(
-        SECRET_KEY='dev'
-    )
-
+    app = flask.Flask(__name__)
+    
     if test_config is None:
-        app.config.from_pyfile('config.py', silent=True)
+        app.config.from_object('flask_config.DevConfig')
     else:
         app.config.from_mapping(test_config)
 
-    logging.info("init flaskr app")
+    logging.info("initialize socketio")
     socketio.init_app(app, async_mode='gevent')
+
     logging.info("initialize relays")
     relays.initialize()
 

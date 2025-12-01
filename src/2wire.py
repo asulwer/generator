@@ -3,6 +3,7 @@ import logger_setup
 import asyncio
 from gpiozero.pins.lgpio import LGPIOFactory
 from gpiozero import Device, Button
+
 import datetime
 import relays
 
@@ -14,7 +15,7 @@ def convert(date_time):
 
 async def button_pressed_handler():
     #if convert("09:00") < datetime.datetime.now() and convert("23:00") > datetime.datetime.now():
-    logging.info("Button pressed asynchronously!")
+    logging.info("Generator starting")
 
     await asyncio.sleep(2)
     relays.pump(relays.State.ON)
@@ -27,11 +28,16 @@ async def button_pressed_handler():
     await asyncio.sleep(0.5)
     relays.ac_on_interupt(relays.State.OFF)
 
+    logging.info("Generator started")
+
 async def button_released_handler():
     #if convert("09:00") < datetime.datetime.now() and convert("23:00") > datetime.datetime.now():
-    logging.info("Button released asynchronously!")
-
+    logging.info("Generator stopping")
+    
+    await asyncio.sleep(2)
     relays.pump(relays.State.OFF)
+
+    logging.info("Generator stopped")
 
 async def main():
     button = Button(pin=26,bounce_time=0.2)
@@ -41,7 +47,7 @@ async def main():
 
     relays.initialize()
 
-    logging.info("Waiting for button presses...")
+    logging.info("Waiting to start generator...")
     await asyncio.Future()
 
 if __name__ == '__main__':
