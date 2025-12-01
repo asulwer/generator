@@ -1,11 +1,11 @@
 import logging
 import logger_setup
 import asyncio
+import socketio
 from gpiozero.pins.lgpio import LGPIOFactory
 from gpiozero import Device, Button
 
 import datetime
-import relays
 
 def convert(date_time):
     format = '%H:%M' #24 hour
@@ -17,25 +17,43 @@ async def button_pressed_handler():
     #if convert("09:00") < datetime.datetime.now() and convert("23:00") > datetime.datetime.now():
     logging.info("Generator starting")
 
-    await asyncio.sleep(2)
-    relays.pump(relays.State.ON)
-    await asyncio.sleep(0.5)
-    relays.starter(relays.State.ON)
-    await asyncio.sleep(5)
-    relays.starter(relays.State.OFF)
-    await asyncio.sleep(5)
-    relays.ac_on_interupt(relays.State.ON)
-    await asyncio.sleep(0.5)
-    relays.ac_on_interupt(relays.State.OFF)
+    with socketio.SimpleClient() as sio:
+        logging.info("connecting to Webserver")
+        await sio.connect('http://localhost:5000')
+        
+        logging.info("turn pump on")
+        await sio.emit('pumpUpdate', { 'switchPump': True })
+        await asyncio.sleep(2)
 
+        logging.info("turn starter on")
+        await sio.emit('starterUpdate', { 'switchStarter': True })
+        await asyncio.sleep(5)
+
+        logging.info("turn starter off")
+        await sio.emit('starterUpdate', { 'switchStarter': False })
+        await asyncio.sleep(5)
+
+        logging.info("toggle ac on")
+        await sio.emit('aconinteruptUpdate', { 'aconinteruptUpdate': True })
+        await asyncio.sleep(1)
+
+        logging.info("release ac toggle")
+        await sio.emit('aconinteruptUpdate', { 'aconinteruptUpdate': False })
+        await asyncio.sleep(0.5)
+    
     logging.info("Generator started")
 
 async def button_released_handler():
     #if convert("09:00") < datetime.datetime.now() and convert("23:00") > datetime.datetime.now():
     logging.info("Generator stopping")
     
-    await asyncio.sleep(2)
-    relays.pump(relays.State.OFF)
+    with socketio.SimpleClient() as sio:
+        logging.info("connecting to Webserver")
+        await sio.connect('http://localhost:5000')
+        
+        logging.info("turn pump off")
+        await sio.emit('pumpUpdate', { 'switchPump': False })
+        await asyncio.sleep(2)
 
     logging.info("Generator stopped")
 
@@ -44,8 +62,6 @@ async def main():
     loop = asyncio.get_running_loop()
     button.when_pressed = lambda: loop.call_soon_threadsafe(asyncio.create_task, button_pressed_handler())
     button.when_released = lambda: loop.call_soon_threadsafe(asyncio.create_task, button_released_handler())
-
-    relays.initialize()
 
     logging.info("Waiting to start generator...")
     await asyncio.Future()
