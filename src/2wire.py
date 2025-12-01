@@ -16,6 +16,7 @@ async def button_pressed_handler():
     #if convert("09:00") < datetime.datetime.now() and convert("23:00") > datetime.datetime.now():
     logging.info("Button pressed asynchronously!")
 
+    await asyncio.sleep(2)
     relays.pump(relays.State.ON)
     await asyncio.sleep(0.5)
     relays.starter(relays.State.ON)
