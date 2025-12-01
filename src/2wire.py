@@ -16,11 +16,11 @@ def convert(date_time):
 async def button_pressed_handler():
     #if convert("09:00") < datetime.datetime.now() and convert("23:00") > datetime.datetime.now():
     logging.info("Generator starting")
-    await asyncio.sleep(2)
-
-    with socketio.SimpleClient() as sio:
+    
+    async with socketio.AsyncSimpleClient() as sio:
         logging.info("connecting to Webserver")
-        await sio.connect('http://localhost:5000')
+        await sio.connect('http://generatorpi:5000')
+        await asyncio.sleep(2)
         
         logging.info("turn pump on")
         await sio.emit('pumpUpdate', { 'switchPump': True })
@@ -35,28 +35,28 @@ async def button_pressed_handler():
         await asyncio.sleep(5)
 
         logging.info("toggle ac on")
-        await sio.emit('aconinteruptUpdate', { 'aconinteruptUpdate': True })
-        await asyncio.sleep(1)
+        await sio.emit('aconinteruptUpdate', { 'switchACOnInterupt': True })
+        await asyncio.sleep(0.5)
 
         logging.info("release ac toggle")
-        await sio.emit('aconinteruptUpdate', { 'aconinteruptUpdate': False })
+        await sio.emit('aconinteruptUpdate', { 'switchACOnInterupt': False })
+        await asyncio.sleep(2)    
     
-    await asyncio.sleep(0.5)
     logging.info("Generator started")
 
 async def button_released_handler():
     #if convert("09:00") < datetime.datetime.now() and convert("23:00") > datetime.datetime.now():
     logging.info("Generator stopping")
-    await asyncio.sleep(2)
-
-    with socketio.SimpleClient() as sio:
+    
+    async with socketio.AsyncSimpleClient() as sio:
         logging.info("connecting to Webserver")
-        await sio.connect('http://localhost:5000')
+        await sio.connect('http://generatorpi:5000')
+        await asyncio.sleep(2)
         
         logging.info("turn pump off")
         await sio.emit('pumpUpdate', { 'switchPump': False })
+        await asyncio.sleep(2)
         
-    await asyncio.sleep(2)
     logging.info("Generator stopped")
 
 async def main():
