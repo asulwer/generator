@@ -44,7 +44,7 @@ def create_app(test_config=None):
             templateData.switchPump = False
             relays.pump(relays.State.OFF)
 
-        flask_socketio.emit('pumpUpdate', templateData.__dict__)
+        flask_socketio.emit('pumpUpdate', templateData.__dict__, broadcast=True)
 
     @socketio.event
     def starterUpdate(data: json):
@@ -58,7 +58,7 @@ def create_app(test_config=None):
             templateData.switchStarter = False
             relays.starter(relays.State.OFF)
 
-        flask_socketio.emit('starterUpdate', templateData.__dict__)
+        flask_socketio.emit('starterUpdate', templateData.__dict__, broadcast=True)
 
     @socketio.event
     def aconinteruptUpdate(data: json):
@@ -72,7 +72,7 @@ def create_app(test_config=None):
             templateData.switchACOnInterupt = False
             relays.ac_on_interupt(relays.State.OFF)
 
-        flask_socketio.emit('aconinteruptUpdate', templateData.__dict__)
+        flask_socketio.emit('aconinteruptUpdate', templateData.__dict__, broadcast=True)
 
     @socketio.event
     def acoffinteruptUpdate(data: json):
@@ -86,6 +86,6 @@ def create_app(test_config=None):
             templateData.switchACOffInterupt = False
             relays.ac_off_interupt(relays.State.OFF)
 
-        flask_socketio.emit('acoffinteruptUpdate', templateData.__dict__)
+        flask_socketio.emit('acoffinteruptUpdate', templateData.__dict__, broadcast=True)
     
     return app
