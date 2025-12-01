@@ -43,32 +43,32 @@ class TemplateData:
             if isinstance(value, bool):
                 self._switchPump = value
             else:
-                raise ValueError("glowPlugs must be boolean")
+                raise ValueError("switchPump must be boolean")
 
         @switchAuxPump.setter
         def switchAuxPump(self, value):
             if isinstance(value, bool):
                 self._switchAuxPump = value
             else:
-                raise ValueError("glowPlugs must be boolean")
+                raise ValueError("switchAuxPump must be boolean")
 
         @switchStarter.setter
         def switchStarter(self, value):
             if isinstance(value, bool):
                 self._switchStarter = value
             else:
-                raise ValueError("glowPlugs must be boolean")
+                raise ValueError("switchStarter must be boolean")
 
         @switchACOnInterupt.setter
         def switchACOnInterupt(self, value):
             if isinstance(value, bool):
                 self._switchACOnInterupt = value
             else:
-                raise ValueError("glowPlugs must be boolean")
+                raise ValueError("switchACOnInterupt must be boolean")
 
         @switchACOffInterupt.setter
         def switchACOffInterupt(self, value):
             if isinstance(value, bool):
                 self._switchACOffInterupt = value
             else:
-                raise ValueError("glowPlugs must be boolean")
+                raise ValueError("switchACOffInterupt must be boolean")
