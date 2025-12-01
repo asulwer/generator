@@ -39,6 +39,8 @@ async def main():
     button.when_pressed = lambda: loop.call_soon_threadsafe(asyncio.create_task, button_pressed_handler())
     button.when_released = lambda: loop.call_soon_threadsafe(asyncio.create_task, button_released_handler())
 
+    relays.initialize()
+
     logging.info("Waiting for button presses...")
     await asyncio.Future()
 
