@@ -19,7 +19,7 @@ async def button_pressed_handler():
     
     async with socketio.AsyncSimpleClient() as sio:
         logging.info("connecting to Webserver")
-        await sio.connect('http://generatorpi:5000')
+        await sio.connect('http://localhost:5000')
         await asyncio.sleep(2)
         
         logging.info("turn pump on")
@@ -50,7 +50,7 @@ async def button_released_handler():
     
     async with socketio.AsyncSimpleClient() as sio:
         logging.info("connecting to Webserver")
-        await sio.connect('http://generatorpi:5000')
+        await sio.connect('http://localhost:5000')
         await asyncio.sleep(2)
         
         logging.info("turn pump off")
