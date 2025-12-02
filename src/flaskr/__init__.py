@@ -77,7 +77,7 @@ def create_app(test_config=None):
     @socketio.event
     def acoffinteruptUpdate(data: json):
         logging.info("acoffinteruptUpdate called")
-        state = bool(data['switchACOnInterupt'])
+        state = bool(data['switchACOffInterupt'])
 
         if state:
             templateData.switchACOffInterupt = True
